@@ -1,57 +1,111 @@
-# Library Management System
+# 📚 Library Management System
 
-A Java/OOP Library Management System with a modern responsive web dashboard.
+A portfolio-ready Library Management System combining a **React + Vite web dashboard** with a **Java 17 OOP/Maven backend implementation**.
 
-## Features
+## ✨ Features
 
-- Book catalog and availability tracking
-- Issue and return workflows
+### Web dashboard
+- Responsive dashboard with inventory statistics
+- Book search and availability filtering
 - Member management
-- Search and filtering
-- Browser persistence with localStorage
-- Responsive dashboard UI
-- Java 17 Maven console application preserved in `src/main/java`
+- Add books and members with validation
+- Issue and return workflow linked to the actual borrower
+- Borrower visibility for issued books
+- Persistent browser data with `localStorage`
+- Demo-data reset for quick testing
+- Mobile-friendly layout and accessible form controls
 
-## Web app
+### Java application
+- Book, member and loan domain models
+- Repository abstraction for persistence
+- Service layer for business rules
+- Console UI
+- JUnit 5 tests
+- Maven build configuration
 
-The Vercel frontend is a React + Vite application. Run locally:
+## 🛠️ Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Frontend | React 19, Vite 7, CSS |
+| Backend/domain | Java 17 |
+| Build | Maven, npm |
+| Testing | JUnit 5 |
+| Deployment | Vercel-ready static frontend |
+| Storage (demo) | Browser localStorage |
+
+## 🚀 Run locally
+
+### Web application
 
 ```bash
 npm install
 npm run dev
 ```
 
-Build for production:
+Create a production build:
 
 ```bash
 npm run build
 ```
 
-## Java application
+### Java application
 
-The original Java/OOP implementation remains available under `src/main/java`:
+Requirements: **JDK 17+** and Maven.
 
 ```bash
 mvn test
 mvn exec:java
 ```
 
-## Architecture
+## 🧱 Architecture
 
-- `src/main/java/com/library/model` — domain entities
-- `src/main/java/com/library/repository` — persistence abstraction
-- `src/main/java/com/library/service` — business rules
-- `src/main/java/com/library/ui` — console interface
-- `src/main.jsx` — web dashboard
-- `src/styles.css` — responsive UI
+```text
+src/
+├── main.jsx                 # React web application
+├── styles.css               # Responsive dashboard styling
+├── main/java/com/library/
+│   ├── model/               # Book, Member, Loan, status models
+│   ├── repository/          # Persistence abstraction/implementation
+│   ├── service/             # Library business rules
+│   └── ui/                  # Console UI
+└── test/java/com/library/   # Unit tests
+```
 
-## Deployment
+The Java implementation follows separation of concerns between **domain models, repository, service and UI**. The browser dashboard is intentionally local-first; a production multi-user deployment should replace localStorage with a persistent API/database.
 
-The web application is configured for Vercel with Vite. The browser demo stores its state in localStorage; a production multi-user version should connect the UI to a persistent API/database.
+## 🧪 Testing
 
-## OOP Highlights
+Run the Java test suite with:
 
-- **Encapsulation:** model state is private and accessed through methods.
-- **Abstraction:** repository interfaces separate persistence from business logic.
-- **Separation of concerns:** models, persistence, services, and UI are isolated.
-- **Extensibility:** a database-backed repository or REST API can be added without rewriting the core domain model.
+```bash
+mvn test
+```
+
+The project also keeps frontend and Java concerns separate so each layer can evolve independently.
+
+## ☁️ Deployment
+
+The React/Vite frontend is configured for Vercel. The deployed demo is client-side and does not require an application server.
+
+For a production version, recommended next steps are:
+
+1. Add a REST API.
+2. Move books, members and loans to PostgreSQL/MySQL.
+3. Add authentication and role-based access.
+4. Add server-side validation and audit history.
+
+## 🎯 OOP concepts demonstrated
+
+- **Encapsulation** — model state is protected behind domain methods.
+- **Abstraction** — repository interfaces isolate persistence details.
+- **Separation of concerns** — models, persistence, services and UI have distinct responsibilities.
+- **Extensibility** — the repository layer can be replaced with a database-backed implementation without rewriting the core domain model.
+
+## 📌 Project status
+
+**Active portfolio project** — the web dashboard and Java OOP implementation are maintained as complementary parts of the system.
+
+## License
+
+Use and adapt this project according to the repository's existing source/license terms.
