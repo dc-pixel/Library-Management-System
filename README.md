@@ -1,61 +1,57 @@
 # Library Management System
 
-A modular Java console application for managing a library's catalog, members, checkouts, returns, and inventory availability.
+A Java/OOP Library Management System with a modern responsive web dashboard.
 
 ## Features
 
-- Add, remove, search, and list books
-- Register, remove, search, and list members
-- Borrow and return books with availability validation
-- Track active loans and borrowing history
-- Prevent duplicate ISBNs and duplicate member IDs
-- Enforce a configurable maximum loan limit per member
-- Persist data locally to a text file between runs
-- Clean OOP design using encapsulation, abstraction, interfaces, and service classes
+- Book catalog and availability tracking
+- Issue and return workflows
+- Member management
+- Search and filtering
+- Browser persistence with localStorage
+- Responsive dashboard UI
+- Java 17 Maven console application preserved in `src/main/java`
 
-## Project Structure
+## Web app
 
-```text
-src/main/java/com/library/
-├── Main.java
-├── model/
-│   ├── Book.java
-│   ├── BookStatus.java
-│   ├── Loan.java
-│   └── Member.java
-├── repository/
-│   └── LibraryRepository.java
-├── service/
-│   └── LibraryService.java
-└── ui/
-    └── ConsoleUI.java
-```
-
-## Requirements
-
-- Java 17+
-
-## Run
+The Vercel frontend is a React + Vite application. Run locally:
 
 ```bash
-javac -d out $(find src/main/java -name "*.java")
-java -cp out com.library.Main
+npm install
+npm run dev
 ```
 
-On Windows PowerShell:
+Build for production:
 
-```powershell
-Get-ChildItem -Recurse src/main/java -Filter *.java | ForEach-Object { $_.FullName } | Set-Content sources.txt
-javac -d out @sources.txt
-java -cp out com.library.Main
+```bash
+npm run build
 ```
 
-The application stores its data in `data/library-data.txt` automatically.
+## Java application
+
+The original Java/OOP implementation remains available under `src/main/java`:
+
+```bash
+mvn test
+mvn exec:java
+```
+
+## Architecture
+
+- `src/main/java/com/library/model` — domain entities
+- `src/main/java/com/library/repository` — persistence abstraction
+- `src/main/java/com/library/service` — business rules
+- `src/main/java/com/library/ui` — console interface
+- `src/main.jsx` — web dashboard
+- `src/styles.css` — responsive UI
+
+## Deployment
+
+The web application is configured for Vercel with Vite. The browser demo stores its state in localStorage; a production multi-user version should connect the UI to a persistent API/database.
 
 ## OOP Highlights
 
 - **Encapsulation:** model state is private and accessed through methods.
-- **Abstraction:** `LibraryRepository` defines persistence operations independently of storage details.
-- **Separation of concerns:** models, persistence, business logic, and UI are isolated.
-- **Composition:** `LibraryService` coordinates repositories and loan state.
-- **Extensibility:** a database-backed repository or GUI can be added without rewriting core business rules.
+- **Abstraction:** repository interfaces separate persistence from business logic.
+- **Separation of concerns:** models, persistence, services, and UI are isolated.
+- **Extensibility:** a database-backed repository or REST API can be added without rewriting the core domain model.
